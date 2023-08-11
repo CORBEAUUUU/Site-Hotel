@@ -8,11 +8,11 @@
 
 {{reservation.nom}}
 {{reservation.prenom}}
-{{reservation.adresse}}
+
 {{reservation.codePostal}}
 {{reservation.anniversaire |date('Y-m-d H:i:s')}}
 {{reservation.startDate |date('Y-m-d H:i:s')}}
-{{reservation.endDate |date('Y-m-d H:i:s')}}
+{# {{reservation.endDate |date('Y-m-d H:i:s')}} #}
 
 
 {% endblock %}

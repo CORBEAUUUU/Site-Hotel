@@ -1,41 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Room index{% endblock %}
-
+{% block title %}Index des chambres{% endblock %}
+{% block stylesheets %}     <link rel="stylesheet" href="{{asset('/css/room.css')}}">
+{% endblock %}
 {% block body %}
-    <h1>Room index</h1>
+    <h1 class="text-5xl font-semibold mb-4 text-center ">NOS CHAMBRES</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Ref</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class=" p-5 flex justify-around ">
         {% for room in rooms %}
-            <tr>
-                <td>{{ room.id }}</td>
-                <td>{{ room.Titre }}</td>
-                <td>{{ room.Description }}</td>
-                <td>{{ room.Prix }}</td>
-                <td>{{ room.Ref }}</td>
-                <td>
-                    <a href="{{ path('app_room_show', {'id': room.id}) }}">show</a>
-                    <a href="{{ path('app_room_edit', {'id': room.id}) }}">edit</a>
-                </td>
-            </tr>
+            <div class="bg-white rounded-lg shadow-lg p-4 w-1/4">
+                <h2 class="text-lg font-semibold mb-2">{{ room.Titre }}</h2>
+                <img src="{{ (room.Reference) }}" alt="Image de la Chambre" class="w-full max-h-60 object-cover mb-3 rounded-lg">
+                <p class="text-gray-600">{{ room.Description }}</p>
+                <p class="text-gray-800 font-bold mt-2">{{ room.Prix }}</p>
+                <p class="text-gray-600">{{ room.Ref }}</p>
+                <div class="mt-4">
+                    <a href="{{ path('app_room_show', {'id': room.id}) }}" class="text-white bg-black hover:bg-gray-800 px-4 py-2 mt-4 inline-block rounded-md">Voir</a>
+                    <a href="{{ path('app_room_edit', {'id': room.id}) }}" class="text-white bg-black hover:bg-gray-800 px-4 py-2 mt-4 inline-block rounded-md">Modifier</a>
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
+            <p class="text-gray-600">Aucun enregistrement trouvé.</p>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
 
-    <a href="{{ path('app_room_new') }}">Create new</a>
+    <a href="{{ path('app_room_new') }}" class="text-white bg-black hover:bg-gray-800 px-4 py-2 mt-4 inline-block rounded-md">Créer une nouvelle chambre</a>
 {% endblock %}

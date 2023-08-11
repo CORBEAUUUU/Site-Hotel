@@ -30,6 +30,9 @@ class Room
     #[ORM\OneToMany(mappedBy: 'room', targetEntity: Image::class)]
     private Collection $Image;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Reference = null;
+
     public function __construct()
     {
         $this->Image = new ArrayCollection();
@@ -114,6 +117,18 @@ class Room
                 $image->setRoom(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->Reference;
+    }
+
+    public function setReference(string $Reference): static
+    {
+        $this->Reference = $Reference;
 
         return $this;
     }

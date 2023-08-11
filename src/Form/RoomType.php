@@ -15,6 +15,7 @@ class RoomType extends AbstractType
             ->add('Titre')
             ->add('Description')
             ->add('Prix')
+            ->add('Reference')
             ->add('Ref')
         ;
     }
